@@ -37,15 +37,18 @@
             </div>
 
             <div class="jumbotron">
-<!--                 <h1>'Allo, 'Allo!</h1>
-                <p class="lead">Always a pleasure scaffolding your apps.</p> -->
-                <p>
+				<div class='projectName'>
+					<input type='text' aria-type='projectName' value='Enter project name' required/>
+					<p></p>
+				</div>
+				<div class='fieldInputs'>
+					<p>Enter field information then click the <green>Add Field</green> button<br/>You can define multiple fields.</p>
 					<div class='fieldLabel required nohide'>
-						<input type='text' value='Enter field label' required/>
+						<input type='text' class='empty noremove' value='Enter field label' required/>
 					</div>
-					<div class='fieldType hideable'>
+					<div class='fieldType hideable empty noremove'>
 						<select required>
-							<option selected disabled>Choose field type</option>
+							<option value='' selected disabled>Choose field type</option>
 							<option>Text</option>
 							<option>Number</option>
 							<option>Single Select</option>
@@ -53,15 +56,31 @@
 							<option>Dropdown</option>
 						</select>
 					</div>
-					<div class='selectOptions cloneme required hideable'>
-						<input type='text' value='Enter choice selection choice'/>
+					<div class='selectOption cloneme required noremove hideable'>
+						<input type='text' class='empty noremove' value='Enter selection choice'/>
 					</div>
-					
-					<a class="btn btn-lg btn-success addfield hideable" href="#">Add Field <span class="glyphicon glyphicon-plus"></span></a>
+					<div class='hideable noremove green addAnother'><span class='hover noremove'>+ Add another +</span></div>
+				</div>
+				
+				<p class='marketing'>
+					<a class="btn btn-lg btn-success addfield hideable noremove" href="#">Add Field <span class="glyphicon glyphicon-plus"></span></a>
 				</p>
             </div>
 			
-            <div class="marketing fieldTable"></div>
+            <div class="fieldTable hideable noremove">
+            <!-- <div class="marketing fieldTable"> -->
+				<div class="row tableHeaders">
+					<div class="col-lg-3 resizable">
+						<h4 aria-type='fieldLabel'>Field Label</h4>
+					</div>
+					<div class="col-lg-3 resizable">
+						<h4 aria-type='fieldType'>Field Type</p>
+					</div>
+					<div class="col-lg-3 resizable">
+						<h4 aria-type='selectOption'>Options</p>
+					</div>
+				</div>
+			</div>
 
 <!--                 <div class="col-lg-8">
                     <h4>HTML5 Boilerplate</h4>
@@ -71,22 +90,14 @@
                     <h4>Modernizr</h4>
                     <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
                 </div> -->
-            <div class="row marketing tableHeaders">
-                <div class="col-lg-3 resizable">
-                    <h4 aria-type='fieldLabel'>Field Label</h4>
-                </div>
-                <div class="col-lg-3 resizable">
-                    <p aria-type='fieldType'>Field Type</p>
-                </div>
-                <div class="col-lg-3 resizable">
-                    <p aria-type='selectOption'>Options</p>
-                </div>
-            </div>
 
-            <div class="footer">
+<!--             <div class="footer">
                 <p><span class="glyphicon glyphicon-heart"></span> from the Oakland GIS team</p>
-            </div>
-
+            </div> -->
+			
+			<p class='marketing submit hideable'>
+				<a class="btn btn-lg btn-success noremove submitbutton" href="#">Submit <span class="glyphicon glyphicon-ok"></span></a>
+			</p>
         </div>
 
 

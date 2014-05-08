@@ -1,14 +1,53 @@
-.row{
-	
+.row {
+	margin-top: -1px;
+	border: 1px solid #ccc;
+}
+.field{
+	padding: 5px 0;
+}
+.resizable{
+}
+green, .green{
+	color: green;
+	font-weight: bold;
+}
+.tableHeaders {
+	border-bottom: 2px solid;
+}
+.submit {
+	text-align: center;
+}
+.addAnother span {
+	cursor: pointer;
+	border-radius: 10px;
 }
 
 .hideable{
 	display: none;
 }
 
+.tableButtons{
+}
+
+.tableButtons > div{
+	text-align: center;
+	background-color: #ddd;
+	cursor: pointer;
+	border-radius: 10px;
+}
+.tableButtons div:hover, .hover:hover{
+	background-color: #fafafa;
+}
+
+.fieldInputs{
+	padding: 10px;
+	border: 1px solid #999;
+	border-radius: 10px;
+}
 /*
 * default below
 */
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
