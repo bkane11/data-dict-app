@@ -9,7 +9,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
-        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -37,13 +37,28 @@
             </div>
 
             <div class="jumbotron">
+				<div>
+					<p>
+						<input type='text' aria-type='submitterName' value='your name' required/>
+					</p>
+					<p type='email'>
+						<input type='email' aria-type='submitterEmail' value='your email' required/>
+					</p>
+					<p>
+						<input type='text' aria-type='chargeNumber' value='charge number' required/>
+					</p>
+					<p>
+						<input type='date' aria-type='fieldworkDate' value='' required/>
+					</p>
+				</div>
 				<div class='projectName'>
-					<input type='text' aria-type='projectName' value='Enter project name' required/>
-					<p></p>
+					<p>
+						<input type='text' aria-type='projectName' value='project name' required/>
+					</p>
 				</div>
 				<div class='fieldInputs'>
 					<p>Enter field information then click the <green>Add Field</green> button<br/>You can define multiple fields.</p>
-					<div class='fieldLabel required nohide'>
+					<div class='fieldLabel nohide'>
 						<input type='text' class='empty noremove' value='Enter field label' required/>
 					</div>
 					<div class='fieldType hideable empty noremove'>
@@ -51,15 +66,16 @@
 							<option value='' selected disabled>Choose field type</option>
 							<option>Text</option>
 							<option>Number</option>
-							<option>Single Select</option>
-							<option>Multi Select</option>
-							<option>Dropdown</option>
+							<option data='ss'>Single Select</option>
+							<option data='ms'>Multi Select</option>
+							<option>Date</option>
+							<option>Time</option>
 						</select>
 					</div>
-					<div class='selectOption cloneme required noremove hideable'>
+					<div class='hideable noremove green addAnother'><span class='hover noremove'>+ Add option +</span></div>
+					<div class='selectOption cloneme noremove hideable'>
 						<input type='text' class='empty noremove' value='Enter selection choice'/>
 					</div>
-					<div class='hideable noremove green addAnother'><span class='hover noremove'>+ Add another +</span></div>
 				</div>
 				
 				<p class='marketing'>
@@ -104,6 +120,7 @@
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="../bower_components/jquery-ui/ui/jquery-ui.js"></script>
         <!-- endbower -->
         <!-- endbuild -->

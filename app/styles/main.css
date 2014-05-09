@@ -44,6 +44,45 @@ green, .green{
 	border: 1px solid #999;
 	border-radius: 10px;
 }
+
+.required{
+	border: 1px solid!important;
+	border-color: #F00!important;
+	border-width: 2px;
+	border-radius: 5px;
+}	
+.numberRequired{
+	border: 1px solid!important;
+	border-color: #F00!important;
+	border-width: 2px;
+	border-radius: 5px;
+}
+.required:after{
+	color: #F00;
+	padding: 10px 0px;
+	width: 160px;
+	float: right;
+	font-size: 12px;
+	position: fixed;
+}
+.required:not([type=number]):after, .required:not([type=email]):after{
+	content: " *required";
+}
+
+.required[type=number]:after {
+	content: " *must be a number";
+}
+.required[type=email]:after {
+	content: " *must be an email address";
+}
+
+.jumbotron input , .jumbotron select {
+	text-align: center;
+}
+.jumbotron input.empty , .jumbotron select option[disabled]{
+	color: #ccc;
+}
+
 /*
 * default below
 */

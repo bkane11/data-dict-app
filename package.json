@@ -28,6 +28,7 @@
     "load-grunt-tasks": "~0.4.0",
     "msexcel-builder": "0.0.2",
     "node-jquery-deparam": "0.0.3",
+    "nodemailer": "^0.6.3",
     "path": "^0.4.9",
     "querystring": "^0.2.0",
     "time-grunt": "~0.3.1",
