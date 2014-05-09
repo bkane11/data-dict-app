@@ -57,7 +57,7 @@
 					</p>
 				</div>
 				<div class='fieldInputs'>
-					<p>Enter field information then click the <green>Add Field</green> button<br/>You can define multiple fields.</p>
+					<p>Enter field information then click the <span class='green'>Add Field</span> button<br/>You can define multiple fields.</p>
 					<div class='fieldLabel nohide'>
 						<input type='text' class='empty noremove' value='Enter field label' required/>
 					</div>
@@ -79,24 +79,27 @@
 				</div>
 				
 				<p class='marketing'>
-					<a class="btn btn-lg btn-success addfield hideable noremove" href="#">Add Field <span class="glyphicon glyphicon-plus"></span></a>
+					<a class="btn btn-lg btn-success addfield hideable noremove">Add Field <span class="glyphicon glyphicon-plus"></span></a>
 				</p>
-            </div>
-			
-            <div class="fieldTable hideable noremove">
-            <!-- <div class="marketing fieldTable"> -->
-				<div class="row tableHeaders">
-					<div class="col-lg-3 resizable">
-						<h4 aria-type='fieldLabel'>Field Label</h4>
-					</div>
-					<div class="col-lg-3 resizable">
-						<h4 aria-type='fieldType'>Field Type</p>
-					</div>
-					<div class="col-lg-3 resizable">
-						<h4 aria-type='selectOption'>Options</p>
+				<div class="fieldTable hideable noremove">
+				<!-- <div class="marketing fieldTable"> -->
+					<div class="row tableHeaders">
+						<div class="fieldrow resizable">
+							<h4 aria-type='fieldLabel'>Field Label</h4>
+						</div>
+						<div class="fieldrow resizable">
+							<h4 aria-type='fieldType'>Field Type</h4>
+						</div>
+						<div class="fieldrow resizable">
+							<h4 aria-type='selectOption'>Options</h4>
+						</div>
+						<div class="fieldrow resizable">
+							<h4 aria-type='selectOption'></h4>
+						</div>
 					</div>
 				</div>
-			</div>
+            </div>
+			
 
 <!--                 <div class="col-lg-8">
                     <h4>HTML5 Boilerplate</h4>
@@ -112,7 +115,7 @@
             </div> -->
 			
 			<p class='marketing submit hideable'>
-				<a class="btn btn-lg btn-success noremove submitbutton" href="#">Submit <span class="glyphicon glyphicon-ok"></span></a>
+				<a class="btn btn-lg btn-success noremove submitbutton">Submit <span class="glyphicon glyphicon-ok"></span></a>
 			</p>
         </div>
 
@@ -152,6 +155,7 @@
         <!-- endbuild -->
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/plugins.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

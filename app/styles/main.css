@@ -1,6 +1,11 @@
+.container  {
+	max-width: 100%!important;
+}
+
 .row {
 	margin-top: -1px;
 	border: 1px solid #ccc;
+	display: table;
 }
 .field{
 	padding: 5px 0;
@@ -11,10 +16,16 @@ green, .green{
 	color: green;
 	font-weight: bold;
 }
+.fieldTable{
+	display: inline-block;
+	margin: 0 auto;
+}
+
 .tableHeaders {
 	border-bottom: 2px solid;
 }
 .submit {
+	display: block;
 	text-align: center;
 }
 .addAnother span {
@@ -27,6 +38,70 @@ green, .green{
 }
 
 .tableButtons{
+}
+
+.duplicator, .copier{
+	width: 50px;
+	margin: 0 auto 0px;
+}
+.fieldrow{
+	/* display: table; */
+}
+.fieldrow{
+	background-attachment: scroll;
+	background-color: rgba(0, 0, 0, 0);
+	background-image: none;
+	background-position: 0% 0%;
+	background-repeat: repeat;
+	border-bottom-color: rgb(51, 51, 51);
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-color: rgb(51, 51, 51);
+	border-left-style: none;
+	border-left-width: 0px;
+	border-right-color: rgb(51, 51, 51);
+	border-right-style: none;
+	border-right-width: 0px;
+	border-top-color: rgb(51, 51, 51);
+	border-top-style: none;
+	border-top-width: 0px;
+	bottom: auto;
+	clear: none;
+	clip: auto;
+	color: rgb(51, 51, 51);
+	cursor: auto;
+	direction: ltr;
+	display: table-cell;
+	float: left;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	height: 39px;
+	left: auto;
+	letter-spacing: 0;
+	line-height: 20px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: disc;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	opacity: 1;
+	overflow-x: visible;
+	overflow-y: visible;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 0px;
+	position: relative;
+	right: auto;
+	text-align: start;
+	top: auto;
+	visibility: visible;
+	width: 182px;
+	word-spacing: 0px;
 }
 
 .tableButtons > div{
@@ -63,7 +138,7 @@ green, .green{
 	width: 160px;
 	float: right;
 	font-size: 12px;
-	position: fixed;
+	position: absolute;
 }
 .required:not([type=number]):after, .required:not([type=email]):after{
 	content: " *required";
@@ -78,6 +153,8 @@ green, .green{
 
 .jumbotron input , .jumbotron select {
 	text-align: center;
+	height: 35px!important;
+	line-height: 29px!important;
 }
 .jumbotron input.empty , .jumbotron select option[disabled]{
 	color: #ccc;

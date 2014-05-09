@@ -8,6 +8,8 @@ var excelbuilder = require('msexcel-builder')
 	path = require('path'),
 	mailer = require('./mailer'),
 	port = 9005,
+	domain = '10.21.40.99',
+	outfolderName = 'data-dicts',
 	header = { "Content-Type" : "text/json" , "Access-Control-Allow-Origin": "*"};
 
 function log(e){
@@ -15,8 +17,7 @@ function log(e){
 }
 	
 var server = http.createServer(function(req, res) {
-	res.writeHead("Access-Control-Allow-Origin", "*");
-	res.writeHead("Access-Control-Allow-Origin", "http://localhost:9000");
+	// res.writeHead("Access-Control-Allow-Origin", "*");
 	var url_parts = url.parse(req.url, false);
   switch (url_parts.pathname) {
     case '/datadict' || '':
@@ -28,18 +29,18 @@ var server = http.createServer(function(req, res) {
       break;
   }
 });
-server.listen(port);
+server.listen(port, domain);
 
 function handleRequest(data, res){
 	data = deparam(data);
-	var outfile = path.join(__dirname , data.project + '.xlsx');
-	var workbook = excelbuilder.createWorkbook(__dirname , data.project + '.xlsx');
+	var outfile = path.join(__dirname + '/' + outfolderName,  data.project + '.xlsx');
+	var workbook = excelbuilder.createWorkbook(__dirname + '/' + outfolderName , data.project + '.xlsx');
 	// var workbook = excelbuilder.createWorkbook('./' , data.project + '.xlsx');
 	var sheet = workbook.createSheet('DataDict', 30,  data.fields.length+1);
 	
 	sheet.set(1, 1, 'Field Name');
 	sheet.set(2, 1, 'Field Type');
-	sheet.set(3, 1, 'Field ValueOptions');
+	sheet.set(3, 1, 'Field Value Options');
 	// sheet.fill(1, 1, {type:'solid',fgColor:'pink',bgColor:'64'}); // sheet.fill(2, 1, {type:'solid',fgColor:'pink',bgColor:'64'}); // sheet.fill(3, 1, {type:'solid',fgColor:'pink',bgColor:'64'});
 	sheet.border(1, 1, {left:'medium',top:'medium',right:'medium',bottom:'medium'});
 	sheet.border(2, 1, {left:'medium',top:'medium',right:'medium',bottom:'medium'});
@@ -100,5 +101,5 @@ function handleRequest(data, res){
 	});
 }
 
-console.log('listening at:\tlocalhost:9005') 
+console.log('listening at:\t' + domain+':'+ port ) 
 

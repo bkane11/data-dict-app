@@ -1,34 +1,41 @@
 // !(function(){
 	// var defaults;
-	var rest = 'http://poak-gis1.portoakland.internal';
+	// var rest = 'http://poak-gis1.portoakland.internal';
+	var rest = 'http://10.21.40.99';
 	// $('.resizable').resizable()
 	$('.addfield').click(addfield)
 	$('.projectName input').one('focus',clearValue)
 	$('.fieldLabel input').one('focus',clearValue).change(showFieldType)
+	$('.addAnother').on('show', function(){$(this).css('display', 'block')});
+	$('.addfield, .submit').on('show', function(){$(this).css('display', 'inline-block')});
+	$('.submit').on('show', function(){$(this).css('display', 'block')});
 	
 	$('.fieldType select')
 		.change(function(){
-			if(['ss', 'ms'].indexOf($(this.selectedOptions).attr('data'))!=-1){
-				$('.addAnother, .selectOption:not(.cloneme)').stop().fadeIn();
-				$('.selectOption:not(.cloneme)').fadeIn()
+			if(['ss', 'ms'].indexOf($(this.selectedOptions).attr('data'))!=-1 || ['Single Select', 'Multi Select'].indexOf($(this).val())!=-1){
+				$('.addAnother, .selectOption:not(.cloneme)').stop()
+					// .css('display', 'block')
+					.show();
+				$('.selectOption:not(.cloneme)').show()
 					.find('input')
 						.removeClass('noadd');
 				if(!$('.selectOption:not(.cloneme)').length>0)
 					addSelectOption(),
 					$('.addfield').stop().fadeOut();
 				else
-					$('.addfield').stop().fadeIn();
+					$('.addfield').stop()
+						.show();
 					
 			}else{
 				$('.addAnother, .selectOption:not(.cloneme)').stop().fadeOut();
 				$('.selectOption:not(.cloneme)').fadeOut()
 					.find('input')
 						.addClass('noadd');
-				$('.addfield').stop().fadeIn();
+				$('.addfield').stop()
+					.show();
 			}
 			
 		})
-		// .change(showSelectOptions)
 		.addClass('noremove')
 		.children()
 			.addClass('noremove');
@@ -39,6 +46,14 @@
 			$(this).attr('default', $(this).val());
 		}).addClass('empty')
 		.one('focus',clearValue);
+	
+	// load stored info from localstorage
+	if(localStorage){
+		if(localStorage['user']);
+			$('[aria-type=submitterName]').val(localStorage['user']).off('focus',clearValue).attr('default','').removeClass('empty');
+		if(localStorage['email']);
+			$('[aria-type=submitterEmail]').val(localStorage['email']).off('focus',clearValue).attr('default','').removeClass('empty');
+	}
 	
 	// set date field to now
 	var now = new Date();
@@ -59,11 +74,9 @@
 	}
 	
 	function showFieldType(e){
-		// showRequire(e.target, 'This is req');
-		$('.fieldType').fadeIn();
+		$('.fieldType').show();
 	}
 	function showSelectOptions(e){
-		// showRequire(e.target, 'This is req');
 		if($('.selectOption').length==1)
 			addSelectOption()
 	}
@@ -80,7 +93,7 @@
 			.removeClass('noremove')
 			.append(remover)
 			.appendTo('.fieldInputs')
-			.fadeIn()
+			.show()
 			.children()
 				.removeClass('noremove')
 				.one('focus',clearValue)
@@ -94,20 +107,20 @@
 		var row = $(document.createElement('div'))
 			.addClass('row field');
 		var labelDiv = $(document.createElement('div'))
-			.addClass('col-lg-3 resizable')
+			.addClass('fieldrow resizable')
 			.appendTo(row);
 		var label = $('.fieldLabel input').clone()
 			.attr('aria-type','fieldLabel')
 			.appendTo(labelDiv);
 		var typeDiv = $(document.createElement('div'))
-			.addClass('col-lg-3 resizable')
+			.addClass('fieldrow resizable')
 			.appendTo(row);
 		var type = $('.fieldType select').clone()
 			.attr('aria-type','fieldType')
 			.val($('.fieldType select').val())
 			.appendTo(typeDiv);
 		var soDiv = $(document.createElement('div'))
-			.addClass('col-lg-3 resizable')
+			.addClass('fieldrow resizable')
 			.appendTo(row);
 		var sos = [];
 		$('.selectOption input:not(.empty):not(.noadd)').each(function(){sos.push(this.value)});
@@ -119,7 +132,7 @@
 		}
 		row.appendTo('.fieldTable');
 		var con = $(document.createElement('div'))
-			.addClass('col-lg-1 tableButtons')
+			.addClass('fieldrow tableButtons')
 			.appendTo(row);
 		var dup = $(document.createElement('div'))
 			.addClass('row duplicator')
@@ -165,8 +178,9 @@
 		$('.fieldInputs select')
 			.val('');
 			
-		if($('.fieldTable, .submit').css('display')=='none')
-			$('.fieldTable, .submit').stop().fadeIn();
+			$('.fieldTable, .submit').stop()
+				.css('display', 'inline-block')
+				.show()
 	}
 	
 	function getFieldJSON(){
@@ -199,17 +213,21 @@
 	
 	function ensure(){
 		var pass = true
+		// var a = 
 		$('[required]').map(function(){
 			if ( $(this).val()=='' || typeof $(this).val() == 'undefined' || $(this).attr('default') == $(this).val() ){
 				 pass = false;
-				 console.log($(this).attr('default'), $(this).val());
+				 // console.log($(this).attr('aria-type'));
+				 // console.log($(this).val());
 				 $(this)
 					.one('change', function(){ 
 						$(this).parent().removeClass('required')
 					})
 					.parent().addClass('required')
+				 return [$(this).attr('default'), $(this).val()];
 			}
 		})
+		// .get()
 		return pass
 	}
 	
@@ -223,12 +241,23 @@
 			success: submitSuccess,
 			error: submitError
 		})
+		
+		if(localStorage){
+			localStorage['user'] = $('[aria-type=submitterName]').val();
+			localStorage['email'] = $('[aria-type=submitterEmail]').val();
+		}
 	}
 	
 	function submitSuccess(r){
+		window['submitsuccess'] = r;
 		console.log(r);
+		alert('Thanks!  Your request is being processed.\nYou can submit a new request if you would like.')
+		location.reload()
+		// $('.fieldInputs').prepend('<p class="green successmessage">Thanks!  Your request is being processed.<br/>You can submit a new request if you would like.</p>');
 	}
 	function submitError(e){
+		window['submiterror'] = e;
 		console.log(e);
+		alert('Oops...there was an error submitting your request.\rPlease try again soon.');
 	}
 // })()
