@@ -38,15 +38,41 @@ green, .green{
 }
 
 .tableButtons{
+	float: right!important;
+	width: 20px!important;
 }
 
 .duplicator, .copier{
 	width: 50px;
 	margin: 0 auto 0px;
 }
-.fieldrow{
-	/* display: table; */
+
+.col-centered h4{text-align: center;}
+.col-centered :not( .tablebuttons ){
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
 }
+[class*="col-"] {
+    padding-top:10px;
+    padding-bottom:15px;
+	border:1px solid #80aa00;
+	background:#d6ec94;
+}
+[class*="col-"]:before {
+    display:block;position:relative;
+    content:"COLUMN";
+    margin-bottom:8px;
+	font-family:sans-serif;
+	font-size:10px;
+    letter-spacing:1px;
+    color:#658600;
+    text-align:left;
+}
+
 .fieldrow{
 	background-attachment: scroll;
 	background-color: rgba(0, 0, 0, 0);
